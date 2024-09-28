@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="icon" href="CnP_28092024_083511.ico" type="image/x-icon">
+    <title>Důvod varování</title>
+</head>
+<body>
+    <h1>Jaký je důvod?</h1>
+    <h1>DŮVOD</h1>
+    <input type="text" id="reason" placeholder="Zadejte důvod">
+    <button onclick="nextPage()">Dále</button>
+
+    <script>
+        function nextPage() {
+            var urlParams = new URLSearchParams(window.location.hash.substring(1));
+            var recipient = urlParams.get('PRO');
+            var sender = urlParams.get('OD');
+            var reason = document.getElementById("reason").value;
+            if (reason) {
+                window.location.href = "message.html#?PRO=" + encodeURIComponent(recipient) + "&OD=" + encodeURIComponent(sender) + "&DUVOD=" + encodeURIComponent(reason);
+            }
+        }
+    </script>
+</body>
+</html>

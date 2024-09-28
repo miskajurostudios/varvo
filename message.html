@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="icon" href="CnP_28092024_083511.ico" type="image/x-icon">
+    <title>Výsledná zpráva</title>
+</head>
+<body>
+    <h1>Varování</h1>
+    <h1>OKOPÍRUJTE A POŠLETE</h1>
+    <pre id="message"></pre>
+    <button onclick="copyText()">COPY</button>
+
+    <script>
+        function copyText() {
+            var message = document.getElementById("message").innerText;
+            navigator.clipboard.writeText(message).then(() => {
+                alert('Text byl zkopírován!');
+            });
+        }
+
+        function generateMessage() {
+            var urlParams = new URLSearchParams(window.location.hash.substring(1));
+            var recipient = urlParams.get('PRO');
+            var sender = urlParams.get('OD');
+            var reason = urlParams.get('DUVOD');
+            var today = new Date();
+            var dateString = today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
+
+            var messageText = `╔══════════╳\n║ ○ *Napomenutí!*\n║\n║ ╭╮ *PRO ${recipient}*\n║ ╰╯ *OD _${sender}_*\n║\n║ ╭╮ DŮVOD\n║ ╰╯ *${reason}*\n║\n║ ╭╮ _DNE_\n║ ╰╯ _${dateString}_\n╚══════════╳`;
+            document.getElementById("message").innerText = messageText;
+        }
+
+        window.onload = generateMessage;
+    </script>
+</body>
+</html>
